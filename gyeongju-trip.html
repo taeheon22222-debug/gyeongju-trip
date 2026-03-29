@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 경주 1박 2일 커플 여행</title>
+<link href="https://fonts.googleapis.com/css2?family=Gmarket+Sans:wght@300;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink:     #e8537a;
+  --pink2:    #f2839e;
+  --pink-bg:  #fff0f4;
+  --rose:     #fce4ec;
+  --peach:    #fef3f0;
+  --cream:    #fffaf8;
+  --ink:      #2c1a1e;
+  --ink2:     #5c3d45;
+  --muted:    #9e7480;
+  --border:   #f0d5dc;
+  --yellow:   #f9a825;
+  --blue:     #4a90b8;
+  --green:    #5a9a6e;
+  --surface:  #ffffff;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', sans-serif;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.header {
+  background: linear-gradient(135deg, #f9d0dc 0%, #fce4ec 40%, #ffeef3 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 120%, rgba(232,83,122,.12), transparent);
+}
+.header-petals {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none; overflow: hidden;
+}
+.petal {
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: .35;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  from { transform: translateY(-20px) rotate(0deg); opacity:.4; }
+  to   { transform: translateY(120px) rotate(360deg); opacity:0; }
+}
+.header-title {
+  font-family: 'Gmarket Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  color: var(--pink);
+  position: relative;
+  letter-spacing: -.01em;
+  margin-bottom: .5rem;
+}
+.header-plan {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--pink); color: #fff;
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+  padding: .25rem .85rem; border-radius: 999px;
+  margin-bottom: .9rem; position: relative;
+}
+.header-sub {
+  font-size: .85rem; color: var(--ink2); line-height: 1.8;
+  position: relative;
+}
+.header-tags {
+  margin-top: .9rem;
+  display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center;
+  position: relative;
+}
+.htag {
+  background: rgba(232,83,122,.1); border: 1px solid rgba(232,83,122,.25);
+  color: var(--pink); font-size: .72rem; font-weight: 600;
+  padding: .2rem .7rem; border-radius: 999px;
+}
+
+/* ── DAY TAB ── */
+.day-tabs {
+  display: flex; gap: 0;
+  max-width: 800px; margin: 1.8rem auto 0;
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(232,83,122,.1);
+}
+.dtab {
+  flex: 1; padding: .85rem 1rem; text-align: center;
+  background: var(--surface); cursor: pointer;
+  transition: all .22s; border: none;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: .82rem; font-weight: 600; color: var(--muted);
+}
+.dtab:first-child { border-right: 1px solid var(--border); }
+.dtab.on {
+  background: var(--pink); color: #fff;
+}
+.dtab-date { font-family: 'Gmarket Sans', sans-serif; font-weight: 700; font-size: 1rem; display: block; margin-bottom: .15rem; }
+.dtab-label { font-size: .72rem; opacity: .8; }
+
+/* ── MAIN ── */
+.main { max-width: 800px; margin: 0 auto; padding: 1.5rem 1.2rem 4rem; }
+
+/* ── DAY SECTION ── */
+.day-section { display: none; animation: fadeIn .35s ease; }
+.day-section.active { display: block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+.day-header {
+  background: linear-gradient(90deg, var(--pink), var(--pink2));
+  color: #fff; border-radius: 14px; padding: 1.2rem 1.5rem;
+  margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.day-header-icon { font-size: 2rem; }
+.day-header-date {
+  font-family: 'Gmarket Sans', sans-serif;
+  font-weight: 700; font-size: 1.2rem;
+}
+.day-header-sub { font-size: .78rem; opacity: .88; margin-top: .15rem; }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 72px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--pink), rgba(232,83,122,.15));
+}
+
+.trow {
+  display: flex; gap: 0; align-items: flex-start;
+  margin-bottom: .75rem; position: relative;
+}
+
+.t-time {
+  width: 72px; flex-shrink: 0;
+  font-family: 'Gmarket Sans', sans-serif;
+  font-size: .72rem; font-weight: 700;
+  color: var(--muted); text-align: right;
+  padding-right: 1rem; padding-top: .85rem;
+  line-height: 1.35;
+}
+
+.t-dot {
+  width: 12px; height: 12px; flex-shrink: 0;
+  border-radius: 50%; background: var(--pink);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--pink);
+  margin-top: .95rem; z-index: 1;
+  flex-shrink: 0;
+}
+.t-dot.wait  { background: var(--yellow); box-shadow: 0 0 0 2px var(--yellow); }
+.t-dot.move  { background: var(--blue);   box-shadow: 0 0 0 2px var(--blue); }
+.t-dot.sleep { background: #b39ddb;       box-shadow: 0 0 0 2px #b39ddb; }
+.t-dot.eat   { background: var(--green);  box-shadow: 0 0 0 2px var(--green); }
+
+.t-card {
+  flex: 1; margin-left: .9rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: .85rem 1.1rem;
+  transition: all .2s;
+}
+.t-card:hover { border-color: var(--pink2); box-shadow: 0 4px 16px rgba(232,83,122,.1); transform: translateX(2px); }
+.t-card.type-wait  { border-left: 3px solid var(--yellow); background: #fffde7; }
+.t-card.type-move  { border-left: 3px solid var(--blue);   background: #e3f2fd; }
+.t-card.type-sleep { border-left: 3px solid #b39ddb;       background: #f3e5f5; }
+.t-card.type-eat   { border-left: 3px solid var(--green);  background: #e8f5e9; }
+
+.t-card-top {
+  display: flex; align-items: flex-start; gap: .6rem; margin-bottom: .35rem;
+}
+.t-card-emoji { font-size: 1.1rem; flex-shrink: 0; }
+.t-card-place {
+  font-weight: 700; font-size: .9rem; color: var(--ink);
+  flex: 1; line-height: 1.3;
+}
+.t-meta {
+  display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .15rem;
+}
+.t-badge {
+  font-size: .65rem; font-weight: 700; padding: .12rem .48rem;
+  border-radius: 999px;
+}
+.badge-time { background: rgba(232,83,122,.1); color: var(--pink); border: 1px solid rgba(232,83,122,.2); }
+.badge-dist { background: rgba(74,144,184,.1); color: var(--blue); border: 1px solid rgba(74,144,184,.2); }
+.badge-wait { background: rgba(249,168,37,.1); color: #e65100; border: 1px solid rgba(249,168,37,.3); }
+
+.t-desc { font-size: .8rem; color: var(--muted); line-height: 1.68; margin-top: .35rem; }
+
+/* ── LEGEND ── */
+.legend {
+  display: flex; flex-wrap: wrap; gap: .6rem;
+  margin: 1.5rem 0 .5rem; padding: .9rem 1.1rem;
+  background: var(--rose); border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.leg { display: flex; align-items: center; gap: .4rem; font-size: .72rem; color: var(--ink2); }
+.leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── SUMMARY CARDS ── */
+.summary-row {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: .7rem;
+  margin-top: 1.5rem;
+}
+.sum-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: .9rem; text-align: center;
+}
+.sum-icon { font-size: 1.4rem; margin-bottom: .3rem; }
+.sum-label { font-size: .68rem; color: var(--muted); margin-bottom: .2rem; }
+.sum-val { font-family: 'Gmarket Sans', sans-serif; font-weight: 700; font-size: 1rem; color: var(--pink); }
+
+/* ── NOTICE ── */
+.notice {
+  background: var(--pink-bg); border: 1px solid rgba(232,83,122,.22);
+  border-radius: 10px; padding: .85rem 1.1rem;
+  font-size: .78rem; color: var(--ink2); line-height: 1.72;
+  margin-top: 1.2rem;
+}
+.notice strong { color: var(--pink); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-petals">
+    <span class="petal" style="left:5%;animation-duration:4s;animation-delay:0s;">🌸</span>
+    <span class="petal" style="left:15%;animation-duration:5s;animation-delay:1s;">🌸</span>
+    <span class="petal" style="left:30%;animation-duration:3.5s;animation-delay:.5s;">🌸</span>
+    <span class="petal" style="left:50%;animation-duration:4.5s;animation-delay:2s;">🌸</span>
+    <span class="petal" style="left:65%;animation-duration:3.8s;animation-delay:.8s;">🌸</span>
+    <span class="petal" style="left:80%;animation-duration:4.2s;animation-delay:1.5s;">🌸</span>
+    <span class="petal" style="left:92%;animation-duration:3.2s;animation-delay:.3s;">🌸</span>
+  </div>
+  <div class="header-plan">🌸 플랜 2-B 확정</div>
+  <h1 class="header-title">경주 1박 2일 커플 여행</h1>
+  <p class="header-sub">4월 18일(금) ~ 19일(토) · 낮 첨성대 + 카페 디저트</p>
+  <div class="header-tags">
+    <span class="htag">🚆 KTX</span>
+    <span class="htag">🚗 렌터카</span>
+    <span class="htag">🍽️ 황리단길 맛집</span>
+    <span class="htag">☕ 감성 카페</span>
+    <span class="htag">🏛️ 첨성대</span>
+    <span class="htag">♨️ 료칸</span>
+    <span class="htag">🎡 경주랜드</span>
+  </div>
+
+  <!-- DAY TABS -->
+  <div class="day-tabs">
+    <button class="dtab on" onclick="switchDay(1)">
+      <span class="dtab-date">4월 18일</span>
+      <span class="dtab-label">1일차 · 토요일</span>
+    </button>
+    <button class="dtab" onclick="switchDay(2)">
+      <span class="dtab-date">4월 19일</span>
+      <span class="dtab-label">2일차 · 일요일</span>
+    </button>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ══ DAY 1 ══ -->
+  <div class="day-section active" id="day1">
+    <div class="day-header">
+      <div class="day-header-icon">🌸</div>
+      <div>
+        <div class="day-header-date">4월 18일 (1일차) · 토요일</div>
+        <div class="day-header-sub">경주 도착 → 황리단길 → 첨성대 → 료칸 체크인</div>
+      </div>
+    </div>
+
+    <!-- LEGEND -->
+    <div class="legend">
+      <div class="leg"><div class="leg-dot" style="background:var(--pink)"></div>관광·식사</div>
+      <div class="leg"><div class="leg-dot" style="background:var(--yellow)"></div>대기 시간</div>
+      <div class="leg"><div class="leg-dot" style="background:var(--blue)"></div>이동</div>
+      <div class="leg"><div class="leg-dot" style="background:#b39ddb"></div>숙박·취침</div>
+      <div class="leg"><div class="leg-dot" style="background:var(--green)"></div>식사</div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="trow">
+        <div class="t-time">13:00</div>
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🚆</span>
+            <span class="t-card-place">경주 KTX 도착</span>
+          </div>
+          <div class="t-desc">경주역 도착</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">13:00<br>13:20</div>
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🚗</span>
+            <span class="t-card-place">렌터카 픽업</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">20분</span>
+          </div>
+          <div class="t-desc">렌터카 수령 후 출발</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">13:20<br>13:40</div>
+        <div class="t-dot move"></div>
+        <div class="t-card type-move">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🗺️</span>
+            <span class="t-card-place">황리단길 이동</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">19분</span>
+            <span class="t-badge badge-dist">약 5km</span>
+          </div>
+          <div class="t-desc">경주역 → 황리단길 이동</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">13:40<br>14:00</div>
+        <div class="t-dot wait"></div>
+        <div class="t-card type-wait">
+          <div class="t-card-top">
+            <span class="t-card-emoji">⏳</span>
+            <span class="t-card-place">식당 대기</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-wait">대기 20분</span>
+          </div>
+          <div class="t-desc">황리단길 맛집 웨이팅</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">14:00<br>15:00</div>
+        <div class="t-dot eat"></div>
+        <div class="t-card type-eat">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🍽️</span>
+            <span class="t-card-place">황리단길 점심식사</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">1시간</span>
+          </div>
+          <div class="t-desc">황리단길 맛집에서 점심</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">15:00<br>15:20</div>
+        <div class="t-dot wait"></div>
+        <div class="t-card type-wait">
+          <div class="t-card-top">
+            <span class="t-card-emoji">☕</span>
+            <span class="t-card-place">카페 대기</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-wait">대기 20분</span>
+          </div>
+          <div class="t-desc">카페 웨이팅</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">15:20<br>15:50</div>
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🧁</span>
+            <span class="t-card-place">황리단길 카페 디저트</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">30분</span>
+          </div>
+          <div class="t-desc">카페에서 디저트 타임</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">15:50<br>16:50</div>
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🏛️</span>
+            <span class="t-card-place">첨성대 투어</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">1시간</span>
+          </div>
+          <div class="t-desc">첨성대 관광 (낮 방문)</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">16:50<br>17:40</div>
+        <div class="t-dot move"></div>
+        <div class="t-card type-move">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🚗</span>
+            <span class="t-card-place">토모노아 료칸 이동</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">50분</span>
+            <span class="t-badge badge-dist">40km</span>
+          </div>
+          <div class="t-desc">첨성대 → 료칸 이동</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">17:40~</div>
+        <div class="t-dot"></div>
+        <div class="t-card" style="border-left:3px solid var(--pink);background:var(--pink-bg)">
+          <div class="t-card-top">
+            <span class="t-card-emoji">♨️</span>
+            <span class="t-card-place">료칸 체크인 & 자유시간</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">하루 종일</span>
+          </div>
+          <div class="t-desc">료칸 도착 후 온천·산책 등 자유롭게 힐링</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">저녁</div>
+        <div class="t-dot eat"></div>
+        <div class="t-card type-eat">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🍱</span>
+            <span class="t-card-place">료칸 석식</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">1시간</span>
+          </div>
+          <div class="t-desc">료칸 저녁식사</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">밤</div>
+        <div class="t-dot sleep"></div>
+        <div class="t-card type-sleep">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🌙</span>
+            <span class="t-card-place">료칸 취침</span>
+          </div>
+          <div class="t-desc">취침</div>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+
+    <div class="summary-row">
+      <div class="sum-card">
+        <div class="sum-icon">🍽️</div>
+        <div class="sum-label">식사</div>
+        <div class="sum-val">점심 + 저녁</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-icon">☕</div>
+        <div class="sum-label">카페</div>
+        <div class="sum-val">황리단길 1곳</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-icon">🚗</div>
+        <div class="sum-label">총 이동거리</div>
+        <div class="sum-val">약 45km</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-icon">⏳</div>
+        <div class="sum-label">대기 시간</div>
+        <div class="sum-val">약 40분</div>
+      </div>
+    </div>
+
+    <div class="notice">
+      <strong>💡 1일차 포인트</strong><br>
+      황리단길 맛집·카페는 대기 20분씩 반영됨. 웨이팅 앱(카카오맵·네이버 예약) 미리 확인하면 대기 줄일 수 있어.
+    </div>
+  </div><!-- /day1 -->
+
+
+  <!-- ══ DAY 2 ══ -->
+  <div class="day-section" id="day2">
+    <div class="day-header">
+      <div class="day-header-icon">🌼</div>
+      <div>
+        <div class="day-header-date">4월 19일 (2일차) · 일요일</div>
+        <div class="day-header-sub">료칸 조식 → 경주랜드 → 황리단길 카페 → 귀가</div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <div class="leg"><div class="leg-dot" style="background:var(--pink)"></div>관광·식사</div>
+      <div class="leg"><div class="leg-dot" style="background:var(--yellow)"></div>대기 시간</div>
+      <div class="leg"><div class="leg-dot" style="background:var(--blue)"></div>이동</div>
+      <div class="leg"><div class="leg-dot" style="background:var(--green)"></div>식사</div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="trow">
+        <div class="t-time">08:00<br>09:00</div>
+        <div class="t-dot eat"></div>
+        <div class="t-card type-eat">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🍳</span>
+            <span class="t-card-place">료칸 조식</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">1시간</span>
+          </div>
+          <div class="t-desc">료칸 아침식사</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">09:00<br>09:34</div>
+        <div class="t-dot move"></div>
+        <div class="t-card type-move">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🚗</span>
+            <span class="t-card-place">경주랜드 이동</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">34분</span>
+            <span class="t-badge badge-dist">30km</span>
+          </div>
+          <div class="t-desc">료칸 → 경주랜드 이동</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">10:00<br>10:40</div>
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🌊</span>
+            <span class="t-card-place">보문호 관광</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">30~40분</span>
+          </div>
+          <div class="t-desc">경주랜드 인근 보문호 산책</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">11:00<br>15:00</div>
+        <div class="t-dot"></div>
+        <div class="t-card" style="border-left:3px solid var(--pink);background:var(--pink-bg)">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🎡</span>
+            <span class="t-card-place">경주랜드</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">약 4시간</span>
+          </div>
+          <div class="t-desc">경주랜드 놀이공원 즐기기 (점심식사 포함)</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">15:00<br>15:30</div>
+        <div class="t-dot move"></div>
+        <div class="t-card type-move">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🚗</span>
+            <span class="t-card-place">황리단길 이동</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">30분</span>
+          </div>
+          <div class="t-desc">경주랜드 → 황리단길 이동</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">15:30<br>15:50</div>
+        <div class="t-dot wait"></div>
+        <div class="t-card type-wait">
+          <div class="t-card-top">
+            <span class="t-card-emoji">☕</span>
+            <span class="t-card-place">카페 대기</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-wait">대기 20분</span>
+          </div>
+          <div class="t-desc">카페 웨이팅</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">15:50<br>16:40</div>
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🌸</span>
+            <span class="t-card-place">황리단길 & 카페</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">50분</span>
+          </div>
+          <div class="t-desc">황리단길 구경 및 감성 카페에서 휴식</div>
+        </div>
+      </div>
+
+      <div class="trow">
+        <div class="t-time">16:40<br>17:00</div>
+        <div class="t-dot move"></div>
+        <div class="t-card type-move">
+          <div class="t-card-top">
+            <span class="t-card-emoji">🚆</span>
+            <span class="t-card-place">경주역 출발</span>
+          </div>
+          <div class="t-meta">
+            <span class="t-badge badge-time">20분</span>
+          </div>
+          <div class="t-desc">황리단길 → 경주역 이동 후 귀가</div>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+
+    <div class="summary-row">
+      <div class="sum-card">
+        <div class="sum-icon">🍽️</div>
+        <div class="sum-label">식사</div>
+        <div class="sum-val">조식 + 점심</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-icon">🎡</div>
+        <div class="sum-label">메인 일정</div>
+        <div class="sum-val">경주랜드 4h</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-icon">🚗</div>
+        <div class="sum-label">총 이동거리</div>
+        <div class="sum-val">약 60km</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-icon">🏠</div>
+        <div class="sum-label">귀가</div>
+        <div class="sum-val">17:00 이후</div>
+      </div>
+    </div>
+
+    <div class="notice">
+      <strong>💡 2일차 포인트</strong><br>
+      경주랜드는 인기 놀이기구 대기 있을 수 있어. 오전 일찍 입장하는 게 유리해. 귀가 KTX 시간에 맞춰 16:40에 황리단길 출발하면 여유 있게 이동 가능해.
+    </div>
+  </div><!-- /day2 -->
+
+</div><!-- /main -->
+
+<script>
+function switchDay(n) {
+  document.querySelectorAll('.day-section').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.dtab').forEach(t => t.classList.remove('on'));
+  document.getElementById('day' + n).classList.add('active');
+  document.querySelectorAll('.dtab')[n - 1].classList.add('on');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
